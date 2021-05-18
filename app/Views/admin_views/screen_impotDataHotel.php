@@ -44,7 +44,7 @@
                                     function validasiFile() {
                                         var e = document.getElementById("file_import"),
                                             a = e.value;
-                                        if (e.files[0].size > 1097152 && (toastr.warning("file tidak bisa diatas 1MB", "Gagal!"), e.value = ""), !/(\.xlsx|\.xls)$/i.exec(a)) return toastr.warning("hanya bisa file XLSX, XLS", "Gagal!"), e.value = "", !1;
+                                        if (e.files[0].size > 1097152 && (toastr.warning("file tidak bisa diatas 1MB ", "Gagal!"), e.value = ""), !/(\.xlsx|\.xls)$/i.exec(a)) return toastr.warning("hanya bisa file XLSX, XLS", "Gagal!"), e.value = "", !1;
 
                                     }
                                 </script>
