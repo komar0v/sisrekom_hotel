@@ -9,13 +9,13 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Tambah Data Hotel</h4>
+                <h4 class="page-title">Edit Data Hotel</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?= base_url('administrasi') ?>">Home</a></li>
-                            <li class="breadcrumb-item"><a href="<?= base_url('administrasi/menu_tambah_hotel') ?>">Menu Tambah</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Tambah Data Hotel</li>
+                            <li class="breadcrumb-item"><a href="<?= base_url('administrasi/semua_hotel') ?>">Semua Hotel</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Data Hotel</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,14 +32,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <?php echo form_open('Hotel/storeHotelDatas', 'class="form-horizontal"'); ?>
+                    <?php echo form_open('Administrasi/storeHotelDatas', 'class="form-horizontal"'); ?>
                     <div class="card-body">
-                        <h4 class="card-title">Hotel Detail</h4>
+                        <h4 class="card-title">Detail data </h4>
 
                         <div class="form-group row">
                             <label class="col-sm-3 text-right control-label col-form-label">Nama Hotel</label>
                             <div class="col-sm-9">
-                                <input type="text" name="hotel_name" class="form-control" id="hotel_name" value="<?= old('hotel_name') ?>" placeholder="Nama Hotel">
+                                <input type="text" name="hotel_name" class="form-control" id="hotel_name" value="<?= $detailHotel['hotel_name'] ?>" placeholder="Nama Hotel">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -49,7 +49,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marker-alt"></i></span>
                                     </div>
-                                    <input type="text" name="hotel_location" id="hotel_location" class="form-control" placeholder="Contoh : Jetis, Yogyakarta">
+                                    <input type="text" name="hotel_location" id="hotel_location" class="form-control" value="<?=$detailHotel['hotel_location'] ?>" placeholder="Contoh : Jetis, Yogyakarta">
                                 </div>
                             </div>
                         </div>

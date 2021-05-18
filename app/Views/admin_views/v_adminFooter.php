@@ -122,7 +122,7 @@
         "serverside" : true,
         "order" : [],
         "ajax" : {
-          "url": "<?= site_url('Administrasi/api_getNamaAlamatHotel') ?>",
+          "url": "<?= site_url('Hotel/api_getNamaAlamatHotel') ?>",
           "type":"POST"
         }
       })

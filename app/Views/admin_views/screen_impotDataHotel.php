@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <?php echo form_open_multipart('Administrasi/storeHotelDatas_fromFile', 'class="form-horizontal"'); ?>
+                    <?php echo form_open_multipart('Hotel/storeHotelDatas_fromFile', 'class="form-horizontal"'); ?>
                     <div class="card-body">
                         <h4 class="card-title">Import Hotel from File</h4>
 
@@ -45,12 +45,15 @@
                                         var e = document.getElementById("file_import"),
                                             a = e.value;
                                         if (e.files[0].size > 1097152 && (toastr.warning("file tidak bisa diatas 1MB", "Gagal!"), e.value = ""), !/(\.xlsx|\.xls)$/i.exec(a)) return toastr.warning("hanya bisa file XLSX, XLS", "Gagal!"), e.value = "", !1;
-                                        
+
                                     }
                                 </script>
                             </div>
                         </div>
                         <div class="border-top">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                             <div class="card-body">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
