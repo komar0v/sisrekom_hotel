@@ -128,13 +128,53 @@ class Hotel extends BaseController
 				}
 				//---------end KOLOM SECONDARY FACILITY
 
+				//---------KOLOM HARGA
+				$index_harga_kamar=0;
+				$hrg_hotelRoom = str_replace(".", "", $kolom_excel['7']);
+			
+
+				if ((100000 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 200000)) {
+					$index_harga_kamar=1;
+				}
+				else if ((200001 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 300000)) {
+					$index_harga_kamar=2;
+				}
+				else if ((300001 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 400000)) {
+					$index_harga_kamar=3;
+				}
+				else if ((400001 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 500000)) {
+					$index_harga_kamar=4;
+				}
+				else if ((500001 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 600000)) {
+					$index_harga_kamar=5;
+				}
+				else if ((600001 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 700000)) {
+					$index_harga_kamar=6;
+				}
+				else if ((700001 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 800000)) {
+					$index_harga_kamar=7;
+				}
+				else if ((800001 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 900000)) {
+					$index_harga_kamar=8;
+				}
+				else if ((900001 <= $hrg_hotelRoom) && ($hrg_hotelRoom <= 1000000)) {
+					$index_harga_kamar=9;
+				}
+				else if ($hrg_hotelRoom>1000000) {
+					$index_harga_kamar=10;
+				}
+
+
+				//---------end KOLOM HARGA
+
+				//---------KOLOM FASILITAS
 				if ($kolom_excel['8'] == 'y') {
 					$hotel_barukah = '1';
 				} else {
 					$hotel_barukah = '0';
 				}
 	
-				if ($kolom_excel['9'] == 'n') {
+				if ($kolom_excel['9'] == 'y') {
 					$adaRestokah = '1';
 				} else {
 					$adaRestokah = '0';
@@ -146,7 +186,7 @@ class Hotel extends BaseController
 					$adaSwPoolkah = '0';
 				}
 	
-				if ($kolom_excel['11'] == 'n') {
+				if ($kolom_excel['11'] == 'y') {
 					$adaAckah = '1';
 				} else {
 					$adaAckah = '0';
@@ -158,11 +198,12 @@ class Hotel extends BaseController
 					$adaGymkah = '0';
 				}
 	
-				if ($kolom_excel['13'] == 'n') {
+				if ($kolom_excel['13'] == 'y') {
 					$adaSpakah = '1';
 				} else {
 					$adaSpakah = '0';
 				}
+				//---------end KOLOM FASILITAS
 
 				$hotel_datas = [
 					'id_hotel' => $hotel_id,
@@ -174,6 +215,7 @@ class Hotel extends BaseController
 					'primary_facility' => $htl_primaryFclty,
 					'secondary_facility' => $htl_secondaryFclty,
 					'hotel_room_price' => $kolom_excel['7'],
+					'indx_htl_room_price'=>$index_harga_kamar,
 					'is_hotel_new' => $hotel_barukah,
 					'avail_resto' => $adaRestokah,
 					'avail_swpool' => $adaSwPoolkah,
