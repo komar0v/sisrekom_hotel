@@ -43,7 +43,7 @@
                                 <span class="text-muted">Form berisi detail informasi hotel</span>
                             </div>
                             <div class="ml-auto">
-                                <div class="tetx-right">
+                                <div class="text-right">
                                     <button onclick="window.location.href='<?= base_url('administrasi/add_hotel') ?>'" type="button" class="btn btn-info">Tambah Data Hotel</button>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                 <span class="text-muted">Import data dari file Excel</span>
                             </div>
                             <div class="ml-auto">
-                                <div class="tetx-right">
+                                <div class="text-right">
                                     <button onclick="window.location.href='<?= base_url('administrasi/import_hotel') ?>'" type="button" class="btn btn-info">Import from Excel File</button>
                                 </div>
                             </div>

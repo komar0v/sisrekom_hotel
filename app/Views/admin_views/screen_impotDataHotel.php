@@ -39,7 +39,7 @@
                         <div class="form-group row">
                             <label class="col-md-3">File Upload</label>
                             <div class="col-md-9">
-                                <input type="file" onchange="return validasiFile()" name="file_import" id="file_import" accept=".xls,.xlsx">
+                                <input required type="file" onchange="return validasiFile()" name="file_import" id="file_import" accept=".xls,.xlsx">
                                 <script>
                                     function validasiFile() {
                                         var e = document.getElementById("file_import"),
@@ -50,12 +50,21 @@
                                 </script>
                             </div>
                         </div>
-                        <div class="border-top">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+
+                        <div class="card">
                             <div class="card-body">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="text-center">
+                                    <button data-toggle="modal" data-target="#Modal3" class="btn btn-success" type="submit"><i class="fas fa-upload"></i> Import</button>
+                                </div>
+                                <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center">
+                                                <img src="<?= base_url('asset_web\admin_panel_assets\assets\images\loading_circle.gif')?>" width="50% ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <?php echo form_close() ?>
