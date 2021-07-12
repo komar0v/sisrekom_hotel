@@ -355,4 +355,127 @@ class Hotel extends BaseController
 		}
 	}
 
+	public function storeEditedHotelDatas()
+	{
+		if (session()->get('id_akunAdmin') != null) {
+
+			$dataValidator = $this->validate([
+				'hotel_name' => [
+					'rules'  => 'required'
+				],
+				'hotel_location' => [
+					'rules'  => 'required'
+				],
+				'hotel_rating' => [
+					'rules'  => 'required'
+				],
+				'hotel_impression' => [
+					'rules'  => 'required'
+				],
+				'reviewed_by_users' => [
+					'rules'  => 'required'
+				],
+				'primary_facility' => [
+					'rules'  => 'required'
+				],
+				'secondary_facility' => [
+					'rules'  => 'required'
+				],
+				'hotel_room_price' => [
+					'rules'  => 'required'
+				],
+				'hotel_photo_url' => [
+					'rules'  => 'required'
+				],
+			]);
+
+			if ($this->request->getPost('isHotelNew') == 'baru') {
+				$hotel_barukah = '1';
+			} else {
+				$hotel_barukah = '0';
+			}
+
+			if ($this->request->getPost('avail_resto') == 'ada') {
+				$adaRestokah = '1';
+			} else {
+				$adaRestokah = '0';
+			}
+
+			if ($this->request->getPost('avail_swpool') == 'ada') {
+				$adaSwPoolkah = '1';
+			} else {
+				$adaSwPoolkah = '0';
+			}
+
+			if ($this->request->getPost('avail_ac') == 'ada') {
+				$adaAckah = '1';
+			} else {
+				$adaAckah = '0';
+			}
+
+			if ($this->request->getPost('avail_gym') == 'ada') {
+				$adaGymkah = '1';
+			} else {
+				$adaGymkah = '0';
+			}
+
+			if ($this->request->getPost('avail_spa') == 'ada') {
+				$adaSpakah = '1';
+			} else {
+				$adaSpakah = '0';
+			}
+
+			$id_hotel = $this->request->getPost('hotel_id');
+
+			$hotel_datas = [
+				'hotel_name' => $this->request->getPost('hotel_name'),
+				'hotel_location' => $this->request->getPost('hotel_location'),
+				'hotel_rating' => $this->request->getPost('hotel_rating'),
+				'hotel_impression' => $this->request->getPost('hotel_impression'),
+				'reviewed_by_users' => $this->request->getPost('reviewed_by_users'),
+				'primary_facility' => $this->request->getPost('primary_facility'),
+				'secondary_facility' => $this->request->getPost('secondary_facility'),
+				'hotel_room_price' => $this->request->getPost('hotel_room_price'),
+				'is_hotel_new' => $hotel_barukah,
+				'avail_resto' => $adaRestokah,
+				'avail_swpool' => $adaSwPoolkah,
+				'avail_ac' => $adaAckah,
+				'avail_gym' => $adaGymkah,
+				'avail_spa' => $adaSpakah,
+				'hotel_photo_url' => $this->request->getPost('hotel_photo_url'),
+			];
+
+			if ($dataValidator == TRUE) {
+				// dd($hotel_datas);
+				$this->HotelMDL_->update($id_hotel,$hotel_datas);
+				session()->setFlashdata('notif', 'toastr.success("Data Hotel ' . $this->request->getPost('hotel_name') . ' berhasil disimpan", "Berhasil!");');
+				return redirect()->to(base_url('administrasi/semua_hotel'));
+			} else {
+				session()->setFlashdata('notif', 'toastr.error("Periksa kembali kolom isian", "Gagal!");');
+
+				return redirect()->to(base_url('administrasi/edit_data_hotel/'.$id_hotel));
+			}
+		} else {
+			return redirect()->to(base_url('administrasi'));
+		}
+	}
+
+	public function deleteHotelDatas(){
+		if (session()->get('id_akunAdmin') != null) {
+			$id_hotel = $this->request->getPost('hotelid');
+
+			if($id_hotel!=null){
+				$this->HotelMDL_->delete($id_hotel);
+				session()->setFlashdata('notif', 'toastr.success("Hotel sudah dihapus", "Berhasil!");');
+				return redirect()->to(base_url('administrasi/semua_hotel'));
+			}else{
+				session()->setFlashdata('notif', 'toastr.error("UNDEFINED", "Gagal!");');
+
+				return redirect()->to(base_url('administrasi/semua_hotel'));
+			}
+		} else {
+			return redirect()->to(base_url('administrasi'));
+		}
+	}
+
 }

@@ -4,7 +4,7 @@
 <div class="content transition">
 
     <div class="container-fluid dashboard">
-        <h3>Rekomendasi hotel untuk kamu, #pengguna</h3>
+        <h3>Rekomendasi hotel untuk kamu, <?= session()->get('nama_akunPengguna') ?></h3>
 
         <div class="container-fluid dashboard">
 

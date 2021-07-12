@@ -21,6 +21,38 @@
     <link rel="stylesheet" href="<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/vendors/lineawesome/css/line-awesome.min.css">
 
     <link href="<?php echo base_url('/asset_web/admin_panel_assets') ?>/assets/libs/toastr/build/toastr.min.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'icomoon';
+            src: url('<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/fonts/icomoon.eot?gzgasd');
+            src: url('<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/fonts/icomoon.eot?gzgasd#iefix') format('embedded-opentype'),
+                url('<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/fonts/icomoon.ttf?gzgasd') format('truetype'),
+                url('<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/fonts/icomoon.woff?gzgasd') format('woff'),
+                url('<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/fonts/icomoon.svg?gzgasd#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        [class^="icon-"],
+        [class*=" icon-"] {
+            /* use !important to prevent issues with browser extensions that change fonts */
+            font-family: 'icomoon' !important;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+
+            /* Better Font Rendering =========== */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .icon-air-conditioner:before {
+            content: "\e900";
+        }
+    </style>
 </head>
 
 <body>
@@ -92,6 +124,22 @@
                     </li>
 
                 </ul>
+                <div class="card mb-3">
+                    <div class="card-body text-primary">
+                        <a class="weatherwidget-io" href="https://forecast7.com/en/n7d88110d43/special-region-of-yogyakarta/" data-label_1="Yogyakarta" data-font="Roboto" data-icons="Climacons Animated" data-mode="Current" data-theme="pure">Yogyakarta</a>
+                        <script>
+                            ! function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (!d.getElementById(id)) {
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = 'https://weatherwidget.io/js/widget.min.js';
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, 'script', 'weatherwidget-io-js');
+                        </script>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

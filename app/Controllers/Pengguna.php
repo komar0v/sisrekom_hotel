@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\AkunPengguna_MDL;
+use App\Models\Hotel_MDL;
 
 class Pengguna extends BaseController
 {
@@ -9,7 +10,7 @@ class Pengguna extends BaseController
 		helper('form');
 		helper('date');
 		$this->Akun_ = new AkunPengguna_MDL();
-        
+        $this->Hotel_ = new Hotel_MDL();
     }
 
 	public function login()
@@ -28,12 +29,15 @@ class Pengguna extends BaseController
 
 	public function index()
 	{
+		$RandomHotel = $this->Hotel_->get_randomHotel();
 		$data=[
-			'judulHalaman'=>'Dashboard'
+			'judulHalaman'=>'Dashboard',
+			'detailHotel'=>$RandomHotel,
 		];
 
 		if (session()->get('email_akunPengguna')!=null){
 			return view('pengguna_views/screen_homePengguna',$data);
+			// dd($data);
 		}else{
 			return redirect()->to(base_url('pengguna/login'));
 		}

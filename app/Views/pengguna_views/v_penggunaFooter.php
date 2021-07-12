@@ -63,6 +63,13 @@ toastr.options = {
     });
 </script>
 <?php } ?>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
 </body>
 
 </html>

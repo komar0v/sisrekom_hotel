@@ -44,7 +44,7 @@
                                                 <th>e-mail</th>
                                                 <th>Asal</th>
                                                 <th>Tanggal terdaftar</th>
-                                                <th>Aksi</th>
+                                                <!-- <th>Aksi</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -54,7 +54,7 @@
                                                 <td><?= $detailPengguna['email_akun'] ?></td>
                                                 <td><?= $detailPengguna['asal_akun'] ?></td>
                                                 <td><?= $detailPengguna['tanggal_waktu_daftar'] ?></td>
-                                                <td><button onclick="window.location.href='<?=base_url()?>'" type="button" class="btn btn-success btn-sm"><i class="m-r-10 mdi mdi-eye"></i> Lihat Detail</button></td>
+                                                <!-- <td><button onclick="window.location.href='<?=base_url()?>'" type="button" class="btn btn-success btn-sm"><i class="m-r-10 mdi mdi-eye"></i> Lihat Detail</button></td> -->
                                             </tr>
                                         <?php }?>
                                             </tbody>

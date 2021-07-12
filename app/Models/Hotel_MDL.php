@@ -22,6 +22,10 @@ class Hotel_MDL extends Model
         }
     }
 
+    public function get_randomHotel(){
+        return $this->db->table($this->table)->orderBy('hotel_name','RANDOM')->get(1)->getResultArray();
+    }
+
     
 
     
