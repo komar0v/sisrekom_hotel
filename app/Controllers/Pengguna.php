@@ -29,7 +29,8 @@ class Pengguna extends BaseController
 
 	public function index()
 	{
-		$RandomHotel = $this->Hotel_->get_randomHotel();
+		$userid = session()->get('id_akunPengguna');
+		$RandomHotel = $this->Hotel_->get_randomHotel($userid);
 		$data=[
 			'judulHalaman'=>'Dashboard',
 			'detailHotel'=>$RandomHotel,

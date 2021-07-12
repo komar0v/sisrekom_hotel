@@ -22,9 +22,12 @@
                 <div class="col-xl-4 col-md-6">
                     <div class="card">
                         <div class="card-body text-center align-items-center">
-                            <a href="#" class="btn btn-danger">
-                                <h1>👎</h1>
-                            </a>
+                            <div class="btn btn-danger">
+                                <button onclick="return refreshpage()" class="btn btn-danger">
+                                    <h1>👎</h1>
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -44,9 +47,9 @@
                                     <?= $data_hotel['hotel_impression'] == '3' ? 'okay 😉' : ''; ?>
                                     <?= $data_hotel['hotel_impression'] == '4' ? 'good 🙂' : ''; ?>
                                     <?= $data_hotel['hotel_impression'] == '5' ? 'fantastic 🤩' : ''; ?>
-                            
+
                                 </p>
-                                
+
                                 <br>
                                 <hr>
                                 <p class="h6 text-center">Fasilitas</p>
@@ -58,11 +61,11 @@
                                     <?= ($data_hotel['avail_spa'] == 1 ? '<li class="list-inline-item"><i data-toggle="tooltip" data-placement="top" title="Spa" class="las la-spa"></i></li>' : ''); ?>
                                 </ul>
                                 <?= ($data_hotel['primary_facility'] == 1 ? '<h6 data-toggle="tooltip" data-placement="top" title="standarisasi protokol kesehatan dan kebersihan berdasarkan konfirmasi yang diberikan oleh masing-masing hotel" style="text-decoration: underline; text-decoration-color: #2ADD28; text-decoration-thickness: 2px;" class="text-center">Tiket Clean</h6>' : ''); ?>
-                                
+
                                 <?= ($data_hotel['secondary_facility'] == 1 ? '<h6 data-toggle="tooltip" data-placement="top" title="Hotel tidak menarik biaya bila melakukan pembatalan pemesanan" style="text-decoration: underline; text-decoration-color: #2ADD28; text-decoration-thickness: 2px;" class="text-center">Pembatalan Gratis</h6>' : ''); ?>
                                 <?= ($data_hotel['secondary_facility'] == 2 ? '<h6 style="text-decoration: underline; text-decoration-color: #2ADD28; text-decoration-thickness: 2px;" class="text-center">WiFi Gratis</h6>' : ''); ?>
                                 <?= ($data_hotel['secondary_facility'] == 3 ? '<h6 style="text-decoration: underline; text-decoration-color: #2ADD28; text-decoration-thickness: 2px;" class="text-center">Sarapan Gratis</h6>' : ''); ?>
-                                
+
                                 <hr>
                                 <h6 class="text-center card-text">Harga mulai IDR <?= $data_hotel['hotel_room_price'] ?></h6>
 
@@ -73,11 +76,17 @@
 
                 <div class="col-xl-4 col-md-6">
                     <div class="card">
-                        <div class="card-body text-center align-items-center">
-                            <a href="#" class="btn btn-info">
-                                <h1>👍</h1>
-                            </a>
-                        </div>
+                        <form class="form-horizontal" action="javascript:void(0)" id="frm-add-user">
+                            <div class="card-body text-center align-items-center">
+                                <div class="btn btn-info">
+                                    <input type="hidden" required id="hotel_id" name="hotel_id" value="<?= $data_hotel['id_hotel'] ?>">
+                                    <input type="hidden" required id="user_id" name="user_id" value="<?= session()->get('id_akunPengguna') ?>">
+                                    <button type="submit" id="loved_btn" class="btn">
+                                        <h1>👍</h1>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

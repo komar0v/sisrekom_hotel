@@ -22,11 +22,14 @@ class Hotel_MDL extends Model
         }
     }
 
-    public function get_randomHotel(){
-        return $this->db->table($this->table)->orderBy('hotel_name','RANDOM')->get(1)->getResultArray();
+    public function get_randomHotel($id_user){
+        $wherenotin = 'id_hotel NOT IN (SELECT id_hotel FROM tbl_loved WHERE id_user_loved=\''.$id_user.'\')';
+        return $this->db->table($this->table)->where($wherenotin)->orderBy('hotel_name','RANDOM')->get(1)->getResultArray();
+        //SELECT * FROM `tbl_data_hotel` WHERE id_hotel NOT IN (SELECT id_hotel FROM tbl_loved WHERE id_user_loved='userid') ORDER BY RAND() LIMIT 1
     }
 
-    
+    //KUERI UNTUK AMBIL HOTEL APA AJA YANG DILOVE
+    //SELECT * FROM `tbl_data_hotel` a INNER JOIN `tbl_loved` b ON b.id_hotel=a.id_hotel WHERE id_user_loved='userid'
 
     
 }
