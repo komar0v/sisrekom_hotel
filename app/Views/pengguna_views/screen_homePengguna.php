@@ -80,7 +80,6 @@
                             <div class="card-body text-center align-items-center">
                                 <div class="btn btn-info">
                                     <input type="hidden" required id="hotel_id" name="hotel_id" value="<?= $data_hotel['id_hotel'] ?>">
-                                    <input type="hidden" required id="user_id" name="user_id" value="<?= session()->get('id_akunPengguna') ?>">
                                     <button type="submit" id="loved_btn" class="btn">
                                         <h1>👍</h1>
                                     </button>

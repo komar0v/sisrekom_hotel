@@ -2,6 +2,8 @@
 
 use App\Models\AkunPengguna_MDL;
 use App\Models\Hotel_MDL;
+use App\Models\Vector_MDL;
+use App\Controllers\Rekomen_Engine;
 
 class Pengguna extends BaseController
 {
@@ -11,6 +13,8 @@ class Pengguna extends BaseController
 		helper('date');
 		$this->Akun_ = new AkunPengguna_MDL();
         $this->Hotel_ = new Hotel_MDL();
+		$this->Vector_ = new Vector_MDL();
+		$this->MakeVector_ = new Rekomen_Engine();
     }
 
 	public function login()
@@ -77,6 +81,8 @@ class Pengguna extends BaseController
 		];
 		
 		if (session()->get('email_akunPengguna')!=null){
+			$this->MakeVector_->makeVector();
+
 			return view('pengguna_views/screen_rekomendasiHotelPengguna',$data);
 		}else{
 			return redirect()->to(base_url('pengguna/login'));
@@ -239,7 +245,34 @@ class Pengguna extends BaseController
 				'tanggal_waktu_daftar'=> $dateTimeJoined
 
 			];
+
+			$alpha_num = '123890abcdwxyz';
+            $charactersLength = strlen($alpha_num);
+            $randomStr = '';
+            for ($i = 0; $i < 8; $i++) {
+                $randomStr .= $alpha_num[rand(0, $charactersLength - 1)];
+            }
+
+            $vector_profile_id = $randomStr;
+
+			$profileVector = [
+                "vector_profile_id" => $vector_profile_id,
+                "user_id" => $idAkun,
+                "hotel_rating" => 0,
+                "hotel_impression" => 0,
+                "primary_facility" => 0,
+                "secondary_facility" => 0,
+                "indx_htl_room_price" => 0,
+                "is_hotel_new" => 0,
+                "avail_resto" => 0,
+                "avail_swpool" => 0,
+                "avail_ac" => 0,
+                "avail_gym" => 0,
+                "avail_spa" => 0,
+            ];
 			$this->Akun_->insert($data);
+			$this->Vector_->insert($profileVector);
+
 			session()->setFlashdata('notif','toastr.success("Silahkan login", "Berhasil daftar!");');
 			return redirect()->to(base_url('pengguna/login'));
 		}else{
