@@ -28,6 +28,11 @@ class Hotel_MDL extends Model
         //SELECT * FROM `tbl_data_hotel` WHERE id_hotel NOT IN (SELECT id_hotel FROM tbl_loved WHERE id_user_loved='userid') ORDER BY RAND() LIMIT 1
     }
 
+    public function getContentHotels(){
+        return $this->table($this->table)->select('id_hotel, hotel_rating, hotel_impression, primary_facility, secondary_facility, indx_htl_room_price, is_hotel_new, avail_resto, avail_swpool, avail_ac, avail_gym, avail_spa')
+        ->get()->getResultArray();
+    }
+
 
     
 }

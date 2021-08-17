@@ -18,4 +18,9 @@ class Vector_MDL extends Model
     public function getVector_profile_idbyUserId($userID){
         return $this->db->table($this->table)->where('user_id',$userID)->get()->getRowArray();
     }
+
+    public function getVector_profile_idbyUserId_contentHotelOnly($userID){
+        return $this->db->table($this->table)->select('hotel_rating,hotel_impression,primary_facility,secondary_facility,indx_htl_room_price,is_hotel_new,avail_resto,avail_swpool,avail_ac,avail_gym,avail_spa',)
+        ->where('user_id',$userID)->get()->getRowArray();
+    }
 }

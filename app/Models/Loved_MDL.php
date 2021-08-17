@@ -20,6 +20,12 @@ class Loved_MDL extends Model
         ->where('id_user_loved', $id_user)->get()->getResultArray();
     }
 
+    public function get_lovedHotelsbyUser_contentHotelOnly($id_user){
+        return $this->db->table('tbl_loved')->select('tbl_loved.id_hotel, hotel_rating, hotel_impression, primary_facility, secondary_facility, indx_htl_room_price, is_hotel_new, avail_resto, avail_swpool, avail_ac, avail_gym, avail_spa')
+        ->join('tbl_data_hotel','tbl_data_hotel.id_hotel=tbl_loved.id_hotel')
+        ->where('id_user_loved', $id_user)->get()->getResultArray();
+    }
+
     public function getVec_hotelRating($id_user){
         return $this->db->table('tbl_loved')->select('hotel_rating, COUNT(*) AS sebanyak')
         ->join('tbl_data_hotel','tbl_data_hotel.id_hotel=tbl_loved.id_hotel')

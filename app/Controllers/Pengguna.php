@@ -14,7 +14,7 @@ class Pengguna extends BaseController
 		$this->Akun_ = new AkunPengguna_MDL();
         $this->Hotel_ = new Hotel_MDL();
 		$this->Vector_ = new Vector_MDL();
-		$this->MakeVector_ = new Rekomen_Engine();
+		$this->RekomenEngine_ = new Rekomen_Engine();
     }
 
 	public function login()
@@ -81,7 +81,11 @@ class Pengguna extends BaseController
 		];
 		
 		if (session()->get('email_akunPengguna')!=null){
-			$this->MakeVector_->makeVector();
+			$this->RekomenEngine_->makeVector();
+
+			$hasilRekomendasi = $this->RekomenEngine_->buat_rekomendasi_dariLoved();
+			$rr = rsort($hasilRekomendasi);
+			dd($hasilRekomendasi);
 
 			return view('pengguna_views/screen_rekomendasiHotelPengguna',$data);
 		}else{
