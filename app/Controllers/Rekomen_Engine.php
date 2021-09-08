@@ -61,12 +61,12 @@ class Rekomen_Engine extends BaseController
         }
     }
 
-    function get_user_loved_hotel()
-    {
-        $dataHotels = $this->Loved_->get_dataHotelsbyUser(session()->get('id_akunPengguna'));
+    // function get_user_loved_hotel()
+    // {
+    //     $dataHotels = $this->Loved_->get_lovedHotelsbyUser(session()->get('id_akunPengguna'));
 
-        // dd($dataHotels);
-    }
+    //     // dd($dataHotels);
+    // }
 
     function makeVector()
     {
@@ -123,12 +123,12 @@ class Rekomen_Engine extends BaseController
         $dataHotels = $this->Loved_->get_lovedHotelsbyUser_contentHotelOnly(session()->get('id_akunPengguna'));
 
         foreach ($dataHotels as $contentdataHotels){
-            $ratings2 = [
-                'data' => [(int) $contentdataHotels['hotel_rating'], (int) $contentdataHotels['hotel_impression'], (int) $contentdataHotels['primary_facility'], (int) $contentdataHotels['secondary_facility'], (int) $contentdataHotels['indx_htl_room_price'], (int) $contentdataHotels['is_hotel_new'], (int) $contentdataHotels['avail_resto'], (int) $contentdataHotels['avail_swpool'], (int) $contentdataHotels['avail_ac'], (int) $contentdataHotels['avail_gym'], (int) $contentdataHotels['avail_spa']],
+            $data_vec = [
+                'data' => [doubleval($contentdataHotels['hotel_rating']), (int) $contentdataHotels['hotel_impression'], (int) $contentdataHotels['primary_facility'], (int) $contentdataHotels['secondary_facility'], (int) $contentdataHotels['indx_htl_room_price'], (int) $contentdataHotels['is_hotel_new'], (int) $contentdataHotels['avail_resto'], (int) $contentdataHotels['avail_swpool'], (int) $contentdataHotels['avail_ac'], (int) $contentdataHotels['avail_gym'], (int) $contentdataHotels['avail_spa']],
                 'vector' => [(int) $vector_fromDB['hotel_rating'], (int) $vector_fromDB['hotel_impression'], (int) $vector_fromDB['primary_facility'], (int) $vector_fromDB['secondary_facility'], (int) $vector_fromDB['indx_htl_room_price'], (int) $vector_fromDB['is_hotel_new'], (int) $vector_fromDB['avail_resto'], (int) $vector_fromDB['avail_swpool'], (int) $vector_fromDB['avail_ac'], (int) $vector_fromDB['avail_gym'], (int) $vector_fromDB['avail_spa']],
             ];
 
-            $similaritas = Cosine_Sim::calc($ratings2['data'], $ratings2['vector']);
+            $similaritas = Cosine_Sim::calc($data_vec['data'], $data_vec['vector']);
 
             $TMP_idHotel_sim[]=[
                 'id_hotel'=>$contentdataHotels['id_hotel'],
@@ -136,6 +136,8 @@ class Rekomen_Engine extends BaseController
             ];
             array_push($TMP_idHotel_sim);
         }
+
+        // dd($data_vec);
         
         return $TMP_idHotel_sim;
     }
@@ -150,12 +152,12 @@ class Rekomen_Engine extends BaseController
         $dataHotels = $this->Hotel_->getContentHotels();
 
         foreach ($dataHotels as $contentdataHotels){
-            $ratings2 = [
-                'data' => [(int) $contentdataHotels['hotel_rating'], (int) $contentdataHotels['hotel_impression'], (int) $contentdataHotels['primary_facility'], (int) $contentdataHotels['secondary_facility'], (int) $contentdataHotels['indx_htl_room_price'], (int) $contentdataHotels['is_hotel_new'], (int) $contentdataHotels['avail_resto'], (int) $contentdataHotels['avail_swpool'], (int) $contentdataHotels['avail_ac'], (int) $contentdataHotels['avail_gym'], (int) $contentdataHotels['avail_spa']],
+            $data_vec = [
+                'data' => [doubleval($contentdataHotels['hotel_rating']), (int) $contentdataHotels['hotel_impression'], (int) $contentdataHotels['primary_facility'], (int) $contentdataHotels['secondary_facility'], (int) $contentdataHotels['indx_htl_room_price'], (int) $contentdataHotels['is_hotel_new'], (int) $contentdataHotels['avail_resto'], (int) $contentdataHotels['avail_swpool'], (int) $contentdataHotels['avail_ac'], (int) $contentdataHotels['avail_gym'], (int) $contentdataHotels['avail_spa']],
                 'vector' => [(int) $vector_fromDB['hotel_rating'], (int) $vector_fromDB['hotel_impression'], (int) $vector_fromDB['primary_facility'], (int) $vector_fromDB['secondary_facility'], (int) $vector_fromDB['indx_htl_room_price'], (int) $vector_fromDB['is_hotel_new'], (int) $vector_fromDB['avail_resto'], (int) $vector_fromDB['avail_swpool'], (int) $vector_fromDB['avail_ac'], (int) $vector_fromDB['avail_gym'], (int) $vector_fromDB['avail_spa']],
             ];
 
-            $similaritas = Cosine_Sim::calc($ratings2['data'], $ratings2['vector']);
+            $similaritas = Cosine_Sim::calc($data_vec['data'], $data_vec['vector']);
 
             $TMP_idHotel_sim[]=[
                 'id_hotel'=>$contentdataHotels['id_hotel'],

@@ -3,6 +3,7 @@
 use App\Models\AkunPengguna_MDL;
 use App\Models\Hotel_MDL;
 use App\Models\Vector_MDL;
+use App\Models\Loved_MDL;
 use App\Controllers\Rekomen_Engine;
 
 class Pengguna extends BaseController
@@ -14,6 +15,7 @@ class Pengguna extends BaseController
 		$this->Akun_ = new AkunPengguna_MDL();
         $this->Hotel_ = new Hotel_MDL();
 		$this->Vector_ = new Vector_MDL();
+		$this->Loved_ = new Loved_MDL();
 		$this->RekomenEngine_ = new Rekomen_Engine();
     }
 
@@ -76,23 +78,49 @@ class Pengguna extends BaseController
 
 	public function rekomendasi_hotel()
 	{
-		$data=[
-			'judulHalaman'=>'Rekomendasi Hotel'
-		];
-		
 		if (session()->get('email_akunPengguna')!=null){
-			$this->RekomenEngine_->makeVector();
+			// $userLovedHotel = $this->Loved_->get_lovedHotelsbyUser(session()->get('id_akunPengguna'));
 
-			$hasilRekomendasi = $this->RekomenEngine_->buat_rekomendasi_dariLoved();
-			$rr = rsort($hasilRekomendasi);
-			dd($hasilRekomendasi);
+			$banyaknyaUserLovedHotel = $this->Loved_->get_banyaknyaHotelLovedbyUser(session()->get('id_akunPengguna'));
+			// dd($banyaknyaUserLovedHotel);
+			if($banyaknyaUserLovedHotel<5){
+				
+				session()->setFlashdata('notif', 'toastr.info("Pilih minimal 5 hotel<br> Data saat ini : '.$banyaknyaUserLovedHotel.'", "Data belum cukup");');
+				return redirect()->to(base_url('pengguna'));
+			}else{
+				$this->RekomenEngine_->makeVector();
 
-			return view('pengguna_views/screen_rekomendasiHotelPengguna',$data);
+				$hasilRekomendasi = $this->RekomenEngine_->buat_rekomendasi_dariLoved();
+
+				foreach($hasilRekomendasi as $rekomen){
+					$dataHotel_Rekomendasi[] = [
+						'dataHotel'=>$this->Hotel_->find($rekomen['id_hotel']),
+						'nilai_similar'=>$rekomen['similaritas'],
+					];
+					$data=[
+						'judulHalaman'=>'Rekomendasi Hotel',
+						'dataHotelRekom'=>$dataHotel_Rekomendasi
+					];
+				}
+				
+				// dd($data);
+				return view('pengguna_views/screen_rekomendasiHotelPengguna',$data);
+			}
 		}else{
 			return redirect()->to(base_url('pengguna/login'));
 		}
 	}
 	//----------------------------------------------------------------------------------------------------------------
+
+	public function reset_rekomendasi(){
+		if (session()->get('email_akunPengguna')!=null){
+			$this->Loved_->delete_loved_hotelByUser(session()->get('id_akunPengguna'));
+			session()->setFlashdata('notif', 'toastr.success("Rekomendasi direset", "Berhasil");');
+			return redirect()->to(base_url('pengguna'));
+		}else{
+			return redirect()->to(base_url('pengguna/login'));
+		}
+	}
 
 	public function updatePasswordPengguna(){
 		if (session()->get('email_akunPengguna') != null){

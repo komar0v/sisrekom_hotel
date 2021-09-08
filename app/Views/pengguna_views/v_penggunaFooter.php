@@ -2,7 +2,9 @@
 <div class="footer transition">
     <hr>
     <p>
-        &copy; 2020 All Right Reserved by 175314059
+        &copy; <script>
+            document.write(new Date().getFullYear())
+        </script> All Right Reserved by 175314059
     </p>
 </div>
 
@@ -16,11 +18,11 @@
 <div class="loader-overlay"></div>
 
 <!-- Library Javascipt-->
-
 <script src="<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/vendors/bootstrap/js/jquery.min.js"></script>
 <script src="<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/vendors/bootstrap/js/popper.min.js"></script>
 <script src="<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/js/script.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
 
 <!-- PENERIMA NOTIF -->
 <script src="<?php echo base_url('/asset_web/admin_panel_assets') ?>/assets/libs/toastr/build/toastr.min.js"></script>
@@ -101,8 +103,12 @@
                         if (data.success == true) {
                             document.getElementById("loved_btn").disabled = true;
                             toastr.success("Hotel yang disukai berhasil ditambahkan.", "Berhasil!");
-                            setTimeout(function(){document.getElementById("loved_btn").disabled = false;},2500);
-                            setTimeout(function(){ refreshpage() }, 3000);
+                            setTimeout(function() {
+                                document.getElementById("loved_btn").disabled = false;
+                            }, 2500);
+                            setTimeout(function() {
+                                refreshpage()
+                            }, 3000);
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -111,6 +117,23 @@
                 });
             });
         });
+    </script>
+<?php } ?>
+
+<?php if (current_url() == base_url('pengguna/rekomendasi_hotel')) { ?>
+    <script>
+        var iso = new Isotope('.hasil_rekomen', {
+                itemSelector: '.el_item',
+                layoutMode: 'fitRows',
+                sortBy: 'n_sim',
+                sortAscending: false,
+                getSortData: {
+                    n_sim: function(itemElem) {
+                        var n_sim = $(itemElem).find('.n_sim').text();
+                        return parseFloat(n_sim.replace(/[\(\)]/g, ''));
+                    }
+                }
+            });
     </script>
 <?php } ?>
 
