@@ -76,6 +76,21 @@ class Pengguna extends BaseController
 		
 	}
 
+	public function detail_hotel($id_hotel){
+		
+		if (session()->get('email_akunPengguna')!=null){
+			$detailHotel=$this->Hotel_->get_hotelDetailsById($id_hotel);
+			$data=[
+				'judulHalaman'=>$detailHotel['hotel_name'],
+				'detailHotel'=>$detailHotel,
+			];
+
+			return view('pengguna_views/screen_detailHotel',$data);
+		}else{
+			return redirect()->to(base_url('pengguna/login'));
+		}
+	}
+
 	public function rekomendasi_hotel()
 	{
 		if (session()->get('email_akunPengguna')!=null){

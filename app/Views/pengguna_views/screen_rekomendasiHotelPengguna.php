@@ -19,7 +19,7 @@
                             <?= (dot_array_search('dataHotel.is_hotel_new',$data) == 1 ? '<p class="small text-center"> Baru!✨</p>' : ''); ?>
                             <h5 class="card-title"><?= dot_array_search('dataHotel.hotel_name',$data)?></h5>
                             <p class="card-text n_sim"><?=$data['nilai_similar']?></p>
-                            <a href="#" class="btn btn-primary">detail</a>
+                            <a href="<?= base_url('pengguna/detail_hotel/'.dot_array_search('dataHotel.id_hotel',$data))?>" class="btn btn-primary">detail</a>
                         </div>
                     </div>
                 </div>

@@ -31,16 +31,36 @@
                         </div>
                         <div class="collapse" id="frmPasswd">
                             <div class="card card-body">
-                            <?= form_open('pengguna/updatePasswordPengguna') ?>
+                                <?= form_open('pengguna/updatePasswordPengguna') ?>
                                 <div class="form-group">
                                     <label>Password baru</label>
                                     <input autocomplete="off" type="password" class="form-control" name="passwordAkunPengguna">
-                                    
+
                                 </div>
                                 <button type="submit" class="btn btn-primary">Simpan Password Baru</button>
-                            <?= form_close() ?>
+                                <?= form_close() ?>
                             </div>
                         </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="card">
+                        <div class="card-header font-weight-bold mr-auto">
+                            <h4>Pengaturan Rekomendasi</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <button type="button" data-toggle="collapse" data-target="#frmResetRecomm" id="btnResetRekom" class="btn btn-success">Reset Rekomendasi</button>
+                        </div>
+                        <div class="collapse" id="frmResetRecomm">
+                            <div class="card card-body">
+                                <p>Rekomendasi direset akan menghilangkan hasil rekomendasi Anda saat ini, lanjutkan?</p>
+                                <button type="button" onclick="location.href='<?= base_url('pengguna/reset_rekomendasi')?>';" class="btn btn-primary">Ya</button>
+                            </div>
+                        </div>
+
 
 
                     </div>
