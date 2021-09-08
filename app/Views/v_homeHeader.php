@@ -51,13 +51,7 @@
 		</div>
 		<ul class="main-menu">
 			<li><a href="<?= base_url() ?>">Home</a></li>
-			<li><a href="#">Tentang</a>
-				<ul class="sub-menu">
-					<li><a href="category.html">Front End</a></li>
-					<li><a href="playlist.html">Back End</a></li>
-				</ul>
-			</li>
-			<li><a href="blog.html">Kontak</a></li>
+			<li><a href="#tentang-section">Tentang</a></li>
 		</ul>
 	</header>
 	<!-- Header section end -->

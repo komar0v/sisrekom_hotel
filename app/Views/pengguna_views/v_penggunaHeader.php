@@ -94,9 +94,9 @@
         </div>
 
         <div class="sidebar-items">
-            <div class="text-center">
+            <!-- <div class="text-center">
                 <img src="<?php echo base_url('/asset_web/user_panel_assets') ?>/assets/images/avatar/person_1.png" height="100" width="100" />
-            </div>
+            </div> -->
             <div class="accordion" id="sidebar-items">
 
                 <ul>

@@ -1,50 +1,49 @@
-
 <!-- Hero section -->
 <section class="hero-section">
-		<div class="hero-slider owl-carousel">
-			<div class="hs-item">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hs-text">
-								<h2><span>Hotel</span> untukmu.</h2>
-								<p>Disini kamu bisa pilih hotel yang sesuai untukmu!</p>
-								<a href="#" class="site-btn">Daftar Sekarang!</a>
-								<a href="#" class="site-btn sb-c2">Login</a>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="hr-img">
-								<img src="<?php echo base_url('/asset_web/home_assets') ?>/img/hotel-ilustra.svg" alt="">
-							</div>
+	<div class="hero-slider owl-carousel">
+		<div class="hs-item">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="hs-text">
+							<h2><span>Hotel</span> untukmu.</h2>
+							<p>Disini kamu bisa pilih hotel yang sesuai untukmu!</p>
+							<a href="#" class="site-btn">Daftar Sekarang!</a>
+							<a href="#" class="site-btn sb-c2">Login</a>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="hs-item">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hs-text">
-								<h2><span>Travelers </span> choice.</h2>
-								<a href="#" class="site-btn">Daftar Sekarang!</a>
-								<a href="#" class="site-btn sb-c2">Login</a>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="hr-img">
-								<img src="<?php echo base_url('/asset_web/home_assets') ?>/img/travelers-ilustra.png" alt="" height="500" width="100">
-							</div>
+					<div class="col-lg-6">
+						<div class="hr-img">
+							<img src="<?php echo base_url('/asset_web/home_assets') ?>/img/hotel-ilustra.svg" alt="">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- Hero section end -->
+		<div class="hs-item">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="hs-text">
+							<h2><span>Travelers </span> choice.</h2>
+							<a href="#" class="site-btn">Daftar Sekarang!</a>
+							<a href="#" class="site-btn sb-c2">Login</a>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="hr-img">
+							<img src="<?php echo base_url('/asset_web/home_assets') ?>/img/travelers-ilustra.png" alt="" height="500" width="100">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Hero section end -->
 
-	<!-- Intro section -->
-	<!--<section class="intro-section spad">
+<!-- Intro section -->
+<!--<section class="intro-section spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -59,10 +58,10 @@
 			</div>
 		</div>
 	</section>-->
-	<!-- Intro section end -->
+<!-- Intro section end -->
 
-	<!-- How section -->
-	<!--<section class="how-section spad set-bg" data-setbg="<?php echo base_url('/asset_web/home_assets') ?>/img/how-to-bg.jpg">
+<!-- How section -->
+<!--<section class="how-section spad set-bg" data-setbg="<?php echo base_url('/asset_web/home_assets') ?>/img/how-to-bg.jpg">
 		<div class="container text-white">
 			<div class="section-title">
 				<h2>How it works</h2>
@@ -98,10 +97,10 @@
 			</div>
 		</div>
 	</section>-->
-	<!-- How section end -->
+<!-- How section end -->
 
-	<!-- Concept section -->
-	<!--<section class="concept-section spad">
+<!-- Concept section -->
+<!--<section class="concept-section spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -141,10 +140,10 @@
 			</div>
 		</div>
 	</section>-->
-	<!-- Concept section end -->
+<!-- Concept section end -->
 
-	<!-- Subscription section -->
-	<!--section class="subscription-section spad">
+<!-- Subscription section -->
+<!--section class="subscription-section spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -168,52 +167,49 @@
 			</div>
 		</div>
 	</section>-->
-	<!-- Subscription section end -->
+<!-- Subscription section end -->
 
-	<!-- Premium section end -->
-	<!--<section class="premium-section spad">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="section-title">
-						<h2>Why go Premium</h2>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<section id="tentang-section" class="spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="section-title">
+					<h2>Tentang</h2>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="premium-item">
-						<img src="<?php echo base_url('/asset_web/home_assets') ?>/img/premium/1.jpg" alt="">
-						<h4>No ad interruptions </h4>
-						<p>Consectetur adipiscing elit</p>
-					</div>
+			<div class="col-lg-6">
+				<p>Sebuah aplikasi karya Fransisco Diaz Atmarestanto untuk merekomendasikan hotel di Yogyakarta kepada pengguna. Aplikasi ini menggunakan pendekatan Cosine Similarity untuk menghitung nilai rekomendasi.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-sm-6">
+				<div class="premium-item">
+					<img src="https://i.postimg.cc/Wb6cJwZV/tugu-YKVektor.jpg" alt="">
+					<h4>Jogja Istimewa</h4>
+					<p>Aplikasi ini mencakup hotel-hotel ternama di Yogyakarta</p>
 				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="premium-item">
-						<img src="<?php echo base_url('/asset_web/home_assets') ?>/img/premium/2.jpg" alt="">
-						<h4>High Quality</h4>
-						<p>Ectetur adipiscing elit</p>
-					</div>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<div class="premium-item">
+					<img src="https://i.postimg.cc/dVhDVTc1/responsive-icon-24451.png" alt="">
+					<h4>Responsive</h4>
+					<p>Tampilan yang responsive sehingga nyaman digunakan</p>
 				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="premium-item">
-						<img src="<?php echo base_url('/asset_web/home_assets') ?>/img/premium/3.jpg" alt="">
-						<h4>Listen Offline</h4>
-						<p>Sed do eiusmod tempor </p>
-					</div>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<div class="premium-item">
+					<img src="https://i.postimg.cc/zB7qjJY6/traveller.png" alt="">
+					<h4>Travelers Choice</h4>
+					<p>Cari hotel sesuai yang kamu mau</p>
 				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="premium-item">
-						<img src="<?php echo base_url('/asset_web/home_assets') ?>/img/premium/4.jpg" alt="">
-						<h4>Download Music</h4>
-						<p>Adipiscing elit</p>
-					</div>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<div class="premium-item">
+					<img src="https://i.postimg.cc/WzFSKWhR/memoji-mantap.jpg" alt="">
+					<h4>Gratis</h4>
+					<p>Layanan ini tanpa ada biaya</p>
 				</div>
 			</div>
 		</div>
-	</section>-->
-	<!-- Premium section end -->
-	
+	</div>
+</section>
