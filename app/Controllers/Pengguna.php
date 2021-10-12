@@ -125,6 +125,41 @@ class Pengguna extends BaseController
 			return redirect()->to(base_url('pengguna/login'));
 		}
 	}
+
+	public function rekomendasi_hotel_all()
+	{
+		if (session()->get('email_akunPengguna')!=null){
+			// $userLovedHotel = $this->Loved_->get_lovedHotelsbyUser(session()->get('id_akunPengguna'));
+
+			$banyaknyaUserLovedHotel = $this->Loved_->get_banyaknyaHotelLovedbyUser(session()->get('id_akunPengguna'));
+			// dd($banyaknyaUserLovedHotel);
+			if($banyaknyaUserLovedHotel<5){
+				
+				session()->setFlashdata('notif', 'toastr.info("Pilih minimal 5 hotel<br> Data saat ini : '.$banyaknyaUserLovedHotel.'", "Data belum cukup");');
+				return redirect()->to(base_url('pengguna'));
+			}else{
+				$this->RekomenEngine_->makeVector();
+
+				$hasilRekomendasi = $this->RekomenEngine_->buat_rekomendasi_dariSemuaHotel();
+
+				foreach($hasilRekomendasi as $rekomen){
+					$dataHotel_Rekomendasi[] = [
+						'dataHotel'=>$this->Hotel_->find($rekomen['id_hotel']),
+						'nilai_similar'=>$rekomen['similaritas'],
+					];
+					$data=[
+						'judulHalaman'=>'Rekomendasi Hotel',
+						'dataHotelRekom'=>$dataHotel_Rekomendasi
+					];
+				}
+				
+				// dd($data);
+				return view('pengguna_views/screen_rekomendasiHotelPengguna',$data);
+			}
+		}else{
+			return redirect()->to(base_url('pengguna/login'));
+		}
+	}
 	//----------------------------------------------------------------------------------------------------------------
 
 	public function reset_rekomendasi(){

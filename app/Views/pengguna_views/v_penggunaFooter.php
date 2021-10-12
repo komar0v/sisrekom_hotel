@@ -120,7 +120,7 @@
     </script>
 <?php } ?>
 
-<?php if (current_url() == base_url('pengguna/rekomendasi_hotel')) { ?>
+<?php if (current_url() == base_url('pengguna/rekomendasi_hotel') || current_url() == base_url('pengguna/rekomendasi_hotel_all')) { ?>
     <script>
         var iso = new Isotope('.hasil_rekomen', {
                 itemSelector: '.el_item',

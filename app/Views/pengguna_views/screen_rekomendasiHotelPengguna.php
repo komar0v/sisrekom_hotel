@@ -5,7 +5,6 @@
 
     <div class="container-fluid dashboard">
         <h3>Rekomendasi hotel untuk kamu, <?= session()->get('nama_akunPengguna') ?></h3>
-        
         <div class="container-fluid dashboard">
 
             <div class="row hasil_rekomen">

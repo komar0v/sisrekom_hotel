@@ -66,6 +66,11 @@
         <div class="menu">
 
             <ul>
+                <?php if (current_url() == base_url('pengguna/rekomendasi_hotel')){ ?>
+                <li>
+                    <a class="h5" href="<?php echo base_url('pengguna/rekomendasi_hotel_all') ?>">Lihat Semua Hotel</a>
+                </li>
+                <?php } ?>
                 <li>
                     <div class="dropdown">
                         <div class="dropdown-toggle" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
