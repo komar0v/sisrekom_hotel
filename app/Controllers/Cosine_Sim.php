@@ -18,13 +18,11 @@ class Cosine_Sim extends BaseController
         $this->data_b = $data_b;
     }
 
-    /**
-     * Mengambil nilai similaritas (kesamaan)
-     * Rentang hasil: 0 - 1
-     * Rumus: sum(ai * bi) / (root(sum(ai^2)) * root(sum(bi^2)))
-     *
-     * @return float
-     */
+   
+    // Mengambil nilai similaritas
+    // Rentang hasil: 0 - 1
+    // Rumus: sum(ai * bi) / (root(sum(ai^2)) * root(sum(bi^2)))
+    
     public function calculate(): float
     {
         $top = $this->getTop();
@@ -33,12 +31,6 @@ class Cosine_Sim extends BaseController
         return $top / $div;
     }
 
-    /**
-     * Kalkulasi nilai atas (angka yang mau dibagi)
-     * Rumus: sum(ai * bi)
-     *
-     * @return float
-     */
     private function getTop(): float
     {
         $data_a = $this->data_a;
@@ -59,12 +51,9 @@ class Cosine_Sim extends BaseController
         return $sum;
     }
 
-    /**
-     * Kalkulasi nilai pembagi
-     * Rumus: root(sum(ai^2)) * root(sum(bi^2))
-     *
-     * @return float
-     */
+    //Nilai pembagi
+    //Rumus: root(sum(ai^2)) * root(sum(bi^2))
+
     private function getDivider(): float
     {
         $data_a = $this->data_a;
@@ -92,13 +81,6 @@ class Cosine_Sim extends BaseController
         return sqrt($sum_squares);
     }
 
-    /**
-     * Static function untuk menyederhanakan
-     * pemanggilan fungsi calculate tanpa harus
-     * inisiasi class terlebih dehulu
-     *
-     * @return float
-     */
     public static function calc(array $data_a, array $data_b): float
     {
         return (new static($data_a, $data_b))->calculate();
