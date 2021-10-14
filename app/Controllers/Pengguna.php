@@ -80,9 +80,13 @@ class Pengguna extends BaseController
 		
 		if (session()->get('email_akunPengguna')!=null){
 			$detailHotel=$this->Hotel_->get_hotelDetailsById($id_hotel);
+
+			$ambilVektorProfile = $this->RekomenEngine_->getVectorProfile();
+
 			$data=[
 				'judulHalaman'=>$detailHotel['hotel_name'],
 				'detailHotel'=>$detailHotel,
+				'vectorProfile'=>$ambilVektorProfile
 			];
 
 			return view('pengguna_views/screen_detailHotel',$data);
