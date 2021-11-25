@@ -55,12 +55,10 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
-<?php if (current_url() == base_url('administrasi/semua_pengguna')) { ?>
   <!-- Javascript Datatables -->
-  <script>
-    $('#tabel_users').DataTable();
-  </script>
-<?php } ?>
+<script>
+  $('#dataTablesNonServSIDE').DataTable();
+</script>
 
 <?php if (current_url() == base_url('administrasi')) { ?>
   <!-- Javascript Ucapan -->

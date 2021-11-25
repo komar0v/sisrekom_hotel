@@ -35,5 +35,11 @@ class AkunPengguna_MDL extends Model
         
     }
 
+    public function getHotelLovedByAllUsers(){
+        return $this->db->table($this->table)->select('id_akun, nama_akun, COUNT(*) jumlah_hotel_loved')
+        ->join('tbl_loved','tbl_akun_pengguna.id_akun = tbl_loved.id_user_loved')
+        ->groupBy('tbl_loved.id_user_loved, tbl_akun_pengguna.id_akun')
+        ->get()->getResultArray();
+    }
     
 }

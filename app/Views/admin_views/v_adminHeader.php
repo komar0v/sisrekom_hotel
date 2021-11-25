@@ -145,6 +145,7 @@
                                 <li class="sidebar-item"><a href="<?= base_url('administrasi/semua_pengguna') ?>" class="sidebar-link"><i class="mdi mdi-account-multiple"></i><span class="hide-menu"> Lihat Pengguna Terdaftar </span></a></li>
                             </ul>
                         </li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo base_url('administrasi/statistik') ?>" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Statistik Rekomendasi</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

@@ -4,6 +4,8 @@ namespace App\Controllers;
 use App\Models\AkunAdmin_MDL;
 use App\Models\AkunPengguna_MDL;
 use App\Models\Hotel_MDL;
+use App\Models\Loved_MDL;
+use App\Controllers\Rekomen_Engine;
 
 class Administrasi extends BaseController
 {
@@ -15,6 +17,8 @@ class Administrasi extends BaseController
 		$this->Akun_ = new AkunAdmin_MDL(); //memanggil model "Akun_MDL" dan direpresentasi menjadi "Akun_"
 		$this->AkunPengguna_ = new AkunPengguna_MDL();
 		$this->HotelMDL_ = new Hotel_MDL();
+		$this->LovedMDL_ = new Loved_MDL();
+		$this->RekomenEngine_ = new Rekomen_Engine();
 	}
 
 	public function login()
@@ -122,6 +126,60 @@ class Administrasi extends BaseController
 			}
 
 			
+		} else {
+			return redirect()->to(base_url('administrasi/login'));
+		}
+	}
+
+	public function statistik(){
+		if (session()->get('id_akunAdmin') != null) {
+			$data = [
+				'semuaPenggunaLovedHotels' => $this->AkunPengguna_->getHotelLovedByAllUsers(),
+			];
+			// dd($data);
+			return view('admin_views/screen_statsUserLoved',$data);
+		} else {
+			return redirect()->to(base_url('administrasi/login'));
+		}
+	}
+
+	public function detail_statistik($userID){
+		if (session()->get('id_akunAdmin') != null) {
+			$getTPFP = $this->LovedMDL_->get_lovedHotelsbyUser($userID);
+			$userTP=0;
+			$userFP=0;
+			$tidakValid=0;
+			
+			foreach($getTPFP as $TPFPValue){
+				if($TPFPValue['tp_fp']==1){
+					$userTP++;
+				}else if(($TPFPValue['tp_fp']==0) && ($TPFPValue['tp_fp']!=null)){
+					$userFP++;
+				}else{
+					$tidakValid++;
+				}
+			}
+
+			$hasilRekomendasi = $this->RekomenEngine_->buatRekomendasiForAnUserDariLovedHotels($userID);
+
+			foreach($hasilRekomendasi as $rekomen){
+				$dataHotel_Rekomendasi[] = [
+					'idHotel'=>$rekomen['id_hotel'],
+					'nilai_similar'=>$rekomen['similaritas'],
+				];
+			}
+				
+
+			$data = [
+				'dataHotelRekom'=>$dataHotel_Rekomendasi,
+				'semuaHotelsLovedByUser' => $this->LovedMDL_->get_lovedHotelsbyUser($userID),
+				'jumlahTP'=>$userTP,
+				'jumlahFP'=>$userFP,
+				'tidakValid'=>$tidakValid,
+			];
+			
+			// dd($data);
+			return view('admin_views/screen_LovedHotelsByUser',$data);
 		} else {
 			return redirect()->to(base_url('administrasi/login'));
 		}
