@@ -10,7 +10,7 @@ class Loved_MDL extends Model
     protected $table = 'tbl_loved';
     protected $primaryKey = 'loved_id';
 
-    protected $allowedFields = ['loved_id','id_user_loved','id_hotel'];
+    protected $allowedFields = ['loved_id','id_user_loved','id_hotel','tp_fp'];
 
     public function get_lovedHotelsbyUser($id_user){
         //->select('loved_id,id_user_loved,id_hotel,hotel_name,hotel_rating,hotel_impression,primary_facility,secondary_facility,indx_htl_room_price,is_hotel_new,avail_resto,avail_swpool,avail_ac,avail_gym,avail_spa')
@@ -113,6 +113,16 @@ class Loved_MDL extends Model
         ->join('tbl_data_hotel','tbl_data_hotel.id_hotel=tbl_loved.id_hotel')
         ->where('id_user_loved', $id_user)->groupBy('avail_spa')->orderBy('sebanyak','DESC')
         ->get()->getRowArray();
+    }
+
+    public function getTPFPaHotelfromUser($id_user, $idHotel){
+        return $this->db->table($this->table)->where(['id_user_loved'=>$id_user, 'id_hotel'=>$idHotel])
+        ->get()->getRowArray();
+    }
+
+    public function setTPFPHotelForUser($id_user, $idHotel, $tpfpValue){
+        return $this->db->table($this->table)->where(['id_user_loved'=>$id_user, 'id_hotel'=>$idHotel])
+        ->update(['tp_fp'=>$tpfpValue]);
     }
 
     

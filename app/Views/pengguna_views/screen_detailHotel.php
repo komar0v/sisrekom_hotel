@@ -51,10 +51,10 @@
                         <h6 class="text-center card-text">Harga mulai IDR <?= $detailHotel['hotel_room_price'] ?></h6>
                     </div>
                 </div>
-                <br>
+
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="card-title text-center">Pilihan Saya</h5>
+                        <h5 class="card-title text-center">Pilihan Saya</h5>
                         <p class="float-left btn btn-primary">Rating : <?= $vectorProfile['hotel_rating'] ?></p>
                         <p class="float-right btn btn-success">
                             <?= $vectorProfile['hotel_impression'] == '1' ? 'terrible 😟' : ''; ?>
@@ -82,16 +82,16 @@
 
                         <hr>
                         <h6 class="text-center card-text"> Harga kisaran
-                        <?= ($vectorProfile['indx_htl_room_price'] == 1 ? '100rb hingga 200rb' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 2 ? '200rb hingga 300rb' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 3 ? '300rb hingga 400rb' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 4 ? '400rb hingga 500rb' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 5 ? '500rb hingga 600rb' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 6 ? '600rb hingga 700rb' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 7 ? '700rb hingga 800rb' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 8 ? '800rb hingga 900rb' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 9 ? '900rb hingga 1jt' :''); ?>
-                        <?= ($vectorProfile['indx_htl_room_price'] == 10 ? 'diatas 1jt' :''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 1 ? '100rb hingga 200rb' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 2 ? '200rb hingga 300rb' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 3 ? '300rb hingga 400rb' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 4 ? '400rb hingga 500rb' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 5 ? '500rb hingga 600rb' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 6 ? '600rb hingga 700rb' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 7 ? '700rb hingga 800rb' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 8 ? '800rb hingga 900rb' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 9 ? '900rb hingga 1jt' : ''); ?>
+                            <?= ($vectorProfile['indx_htl_room_price'] == 10 ? 'diatas 1jt' : ''); ?>
                         </h6>
                     </div>
                 </div>
@@ -100,6 +100,36 @@
             <!--End Start card-->
 
         </div>
+        <?php if(($isTPFPExist==='EXIST') && ($tpfpuser['tp_fp']==null)){ ?>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <?=form_open('pengguna/send_TPFP_user'); ?>
+                        <p class="text-center card-title pt-2">Apakah hasil rekomendasi hotel ini cocok untuk Anda?</p>
+                        <div class="form-check text-center">
+                            <input class="form-check-input" type="radio" name="radio_tpfp" id="radio1" value="tp">
+                            <label class="form-check-label" for="radio1">
+                                Cocok
+                            </label>
+                        </div>
+                        <div class="form-check text-center">
+                            <input class="form-check-input" type="radio" name="radio_tpfp" id="radio2" value="fp">
+                            <label class="form-check-label" for="radio2">
+                                Tidak Cocok
+                            </label>
+                        </div>
+                        <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+                        </div>
+                        <input type="hidden" name="hotel_id" value="<?=$detailHotel['id_hotel']?>">
+                        <?=form_close();?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <?php }?>
 
     </div>
 

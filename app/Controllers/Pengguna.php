@@ -82,12 +82,23 @@ class Pengguna extends BaseController
 			$detailHotel=$this->Hotel_->get_hotelDetailsById($id_hotel);
 
 			$ambilVektorProfile = $this->RekomenEngine_->getVectorProfile();
+			$ambilTPFPuser = $this->Loved_->getTPFPaHotelfromUser(session()->get('id_akunPengguna'),$id_hotel);
+
+			$checkTPFP_isExist='';
+			if(is_array($ambilTPFPuser)==1){
+				$checkTPFP_isExist='EXIST';
+			}else{
+				$checkTPFP_isExist='NOTEXIST';
+			}
 
 			$data=[
+				'isTPFPExist'=>$checkTPFP_isExist,
+				'tpfpuser'=>$ambilTPFPuser,
 				'judulHalaman'=>$detailHotel['hotel_name'],
 				'detailHotel'=>$detailHotel,
 				'vectorProfile'=>$ambilVektorProfile
 			];
+			// dd($data);
 
 			return view('pengguna_views/screen_detailHotel',$data);
 		}else{
@@ -364,6 +375,48 @@ class Pengguna extends BaseController
 		}else{
 			session()->setFlashdata('notif','toastr.error("Email sudah terpakai", "Gagal!");');
 			return redirect()->to(base_url('pengguna/daftar_baru'));
+		}
+	}
+
+	public function send_TPFP_user(){
+		if (session()->get('email_akunPengguna')!=null){
+			$jawabanUser = $this->request->getPost('radio_tpfp');
+			$idHotel = $this->request->getPost('hotel_id');
+			$idUser = session()->get('id_akunPengguna');
+			$validator = $this->validate([
+				'radio_tpfp' => [
+					'rules'  => 'required'
+				],
+				'hotel_id' => [
+					'rules'  => 'required'
+				],
+			]);
+			
+			if($validator==TRUE){
+				$isTPFP=null;
+				if($jawabanUser==='tp'){
+					$isTPFP='1';
+				}else if($jawabanUser==='fp'){
+					$isTPFP='0';
+				}
+				$data = [
+					'id_user_loved'=>$idUser,
+					'id_hotel'=>$idHotel,
+					'tp_fp'=>$isTPFP,
+				];
+
+				// dd($data);
+				$this->Loved_->setTPFPHotelForUser($idUser,$idHotel,$isTPFP);
+				session()->setFlashdata('notif', 'toastr.success("", "Hasil Terkirim");');
+				return redirect()->to(base_url('pengguna/detail_hotel/'.$idHotel));
+			}else{
+				session()->setFlashdata('notif', 'toastr.error("", "Gagal Terkirim");');
+				return redirect()->to(base_url('pengguna/detail_hotel/'.$idHotel));
+			}
+
+			
+		}else{
+			return redirect()->to(base_url('pengguna/login'));
 		}
 	}
 
