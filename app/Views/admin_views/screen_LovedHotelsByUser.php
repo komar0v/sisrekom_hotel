@@ -50,12 +50,12 @@
                                         <tbody>
                                         <?php foreach($semuaHotelsLovedByUser as $lovedHotels){?>
                                             <tr>
-                                                <td><?= $lovedHotels['hotel_name'] ?></td>
+                                                <td><h5><b><?= $lovedHotels['hotel_name'] ?></b></h5></td>
                                                 <td>
                                                     <?php 
                                                     foreach($dataHotelRekom as $hasilRekom){
                                                         if($hasilRekom['idHotel']==$lovedHotels['id_hotel']){
-                                                            echo($hasilRekom['nilai_similar']);
+                                                            echo("<h5><b>".$hasilRekom['nilai_similar']."</b></h5>");
                                                         }
                                                     }
                                                     ?>

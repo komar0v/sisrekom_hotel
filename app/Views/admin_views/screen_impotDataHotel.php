@@ -84,7 +84,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 text-right control-label col-form-label">File contoh</label>
                             <div class="col-md-9">
-                                <button type="button" class="btn btn-info"> <i class="fas fa-download"></i> Download</button>
+                                <button onclick="window.location.href='<?= base_url('asset_web/upload_sample.xlsx') ?>'" type="button" class="btn btn-info"> <i class="fas fa-download"></i> Download</button>
                             </div>
                         </div>
 
